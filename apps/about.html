@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #202124;
+            font-family: 'Consolas', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .errorBox {
+            background: white;
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b71c1c;
+            margin-bottom: 10px;
+        }
+
+        .msg {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .closeButton {
+            margin-top: 10px;
+            background: #b71c1c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .closeButton:hover {
+            background: #a01515;
+        }
+    </style>
+</head>
+<body>
+    <div class="errorBox">
+        <div class="title">JScript OS</div>
+        <div class="msg">Version 1.0</div>
+        <div class="msg">Powered by Interact.js</div>
+        <button class="closeButton" onclick="closeWindow()">Close</button>
+    </div>
+
+    <script>
+    function closeWindow() {
+        window.parent.postMessage({ action: 'closeWindow' }, '*');
+    }
+    </script>
+</body>
+</html>

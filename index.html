@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <script defer src="./js/timeWidget.js"></script>
+    <script defer src="./js/startWidget.js"></script>
+    <script defer src="./js/appWindow.js"></script>
+    <script defer src="./js/windowApi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+    <title>JScript OS</title>
+</head>
+<body>
+    <div id="dragOverlay"></div>
+
+    <div class="desktop">
+        <div class="apps">
+            <div class="app" data-app="notepad">
+                <img src="./images/appIcons/notepad.svg" alt="Icon" class="icon">
+                <div class="appName">Notepad</div>
+            </div>
+            <div class="app" data-app="calculator">
+                <img src="./images/appIcons/calculator.svg" alt="Icon" class="icon">
+                <div class="appName">Calculator</div>
+            </div>
+            <div class="app" data-app="cube">
+                <img src="./favicon.ico" alt="Icon" class="icon">
+                <div class="appName">Rotating cube</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="taskbar">
+        <div class="start">Start</div>
+        <div id="timeNow" class="time">HH:MM:SS</div>
+    </div>
+
+    <div id="startMenu" class="startMenu hidden">
+        <div class="menuItem" data-app="notepad">Notepad</div>
+        <div class="menuItem" data-app="calculator">Calculator</div>
+        <div class="menuItem" data-app="cube">Rotating cube</div>
+        <div class="menuItem" data-app="error">Error Test Dialog</div>
+        <div class="menuItem" data-app="about">About</div>
+    </div>
+    
+</body>
+</html>
