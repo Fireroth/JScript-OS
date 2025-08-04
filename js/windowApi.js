@@ -9,5 +9,9 @@ window.addEventListener('message', (event) => {
                 }
             }
         });
+    } else if (event.data && event.data.action === 'createWindow' && typeof event.data.appName === 'string') {
+        createAppWindow(event.data.appName);
+    } else {
+        createAppWindow('apiError');
     }
 });

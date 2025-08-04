@@ -65,18 +65,20 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.desktop .apps .app .icon{
+.desktop .apps .app img{
     width: 48px;
     height: 48px;
     color: #000;
     text-align: center;
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
 
 }
 
 .desktop .apps .app .appName {
     font-size: 16px;
+    color: #f9f9f9;
 }
 
 .startMenu {
@@ -95,6 +97,13 @@ body {
 .startMenu .menuItem {
     padding: 5px;
     cursor: pointer;
+    display: flex;
+}
+
+.startMenu .menuItem img {
+    width: 20px;
+    height: 20px;
+    padding-right: 8px;
 }
 
 .startMenu .menuItem:hover {
@@ -113,7 +122,10 @@ body {
     display: flex;
     flex-direction: column;
     border: 3px solid #000;
+    border-radius: 2px;
     box-sizing: border-box;
+    min-height: 80px;
+    min-width: 100px;
 }
 
 .window .titleBar {
@@ -130,6 +142,8 @@ body {
     flex: 1;
     border-top: 3px solid #000;
     background-color: #282828;
+    min-height: 0px;
+    min-width: 0px;
 }
 
 .window .windowContent iframe {

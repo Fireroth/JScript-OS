@@ -27,7 +27,7 @@
             overflow: hidden;
         }
 
-        .errorBox {
+        .container {
             background: white;
             width: 100vw;
             height: 100vh;
@@ -51,6 +51,10 @@
             color: #333;
         }
 
+        .msg a{
+            color: #333;
+        }
+
         .closeButton {
             margin-top: 10px;
             background: #b71c1c;
@@ -68,10 +72,11 @@
     </style>
 </head>
 <body>
-    <div class="errorBox">
+    <div class="container">
         <div class="title">JScript OS</div>
-        <div class="msg">Version 1.0</div>
+        <div class="msg">Version 1.1</div>
         <div class="msg">Powered by Interact.js</div>
+        <div class="msg">Icons by <a href="https://icons8.com" target="_blank">Icons8</a></div>
         <button class="closeButton" onclick="closeWindow()">Close</button>
     </div>
 

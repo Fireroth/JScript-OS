@@ -3,31 +3,57 @@ const appConfigs = {
         title: 'Rotating cube',
         icon: './favicon.ico',
         iframeSrc: 'https://fireroth.is-a.dev/sottau/webGLCube/',
-        windowSize: { width: 900, height: 600 }
+        windowSize: {width: 900, height: 600},
+        minSize: {width: 300, height: 200}
     },
     about: {
         title: 'About JScript OS',
-        icon: './images/appIcons/info.svg',
+        icon: './images/appIcons/info.png',
         iframeSrc: './apps/about.html',
-        windowSize: { width: 250, height: 195 }
+        windowSize: {width: 250, height: 210},
+        minSize: {width: 250, height: 210}
     },
     notepad: {
         title: 'Notepad',
-        icon: './images/appIcons/notepad.svg',
+        icon: './images/appIcons/notepad.png',
         iframeSrc: './apps/notepad.html',
-        windowSize: { width: 500, height: 400 }
+        windowSize: {width: 500, height: 350},
+        minSize: {width: 200, height: 150}
     },
     error: {
         title: 'Error :(',
-        icon: './images/appIcons/error.svg',
+        icon: './images/appIcons/error.png',
         iframeSrc: './apps/error.html',
-        windowSize: { width: 400, height: 200 }
+        windowSize: {width: 400, height: 150},
+        minSize: {width: 400, height: 150}
+    },
+    appNotFoundError: {
+        title: 'Error',
+        icon: './images/appIcons/error.png',
+        iframeSrc: './apps/appNotFoundError.html',
+        windowSize: {width: 400, height: 150},
+        minSize: {width: 400, height: 150}
+    },
+    apiError: {
+        title: 'Error',
+        icon: './images/appIcons/error.png',
+        iframeSrc: './apps/apiError.html',
+        windowSize: {width: 400, height: 150},
+        minSize: {width: 400, height: 150}
+    },
+    devPanel: {
+        title: 'Developer stuff',
+        icon: './images/appIcons/code.png',
+        iframeSrc: './apps/devPanel.html',
+        windowSize: {width: 700, height: 450},
+        minSize: {width: 700, height: 200}
     },
     calculator: {
         title: 'Calculator',
-        icon: './images/appIcons/calculator.svg',
+        icon: './images/appIcons/calculator.png',
         iframeSrc: './apps/calculator.html',
-        windowSize: { width: 300, height: 400 }
+        windowSize: {width: 300, height: 400},
+        minSize: {width: 200, height: 350}
     }
 };
 
@@ -36,10 +62,15 @@ let highestZIndex = 5;
 const overlay = document.getElementById('dragOverlay');
 
 function createAppWindow(appKey) {
-    const config = appConfigs[appKey];
-    if (!config) return;
+    let config = appConfigs[appKey];
+    if (!config) {
+        config = appConfigs['appNotFoundError']
+    };
 
-    const { width = 400, height = 300 } = config.windowSize || {};
+    const windowSize = config.windowSize || { width: 400, height: 300 };
+    const minSize = config.minSize || { width: 150, height: 100 };
+
+    const { width, height } = windowSize;
 
     const windowDiv = document.createElement('div');
     windowDiv.classList.add('window', 'movable');
@@ -103,6 +134,11 @@ function createAppWindow(appKey) {
     interact(windowDiv).resizable({
         edges: { top: true, left: true, bottom: true, right: true },
         margin: 5,
+        modifiers: [
+            interact.modifiers.restrictSize({
+                min: minSize
+            })
+        ],
         listeners: {
             start(event) {
                 overlay.style.display = 'block';
