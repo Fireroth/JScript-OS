@@ -1,63 +1,8 @@
-const appConfigs = {
-    cube: {
-        title: 'Rotating cube',
-        icon: './favicon.ico',
-        iframeSrc: 'https://fireroth.is-a.dev/sottau/webGLCube/',
-        windowSize: {width: 900, height: 600},
-        minSize: {width: 300, height: 200}
-    },
-    about: {
-        title: 'About JScript OS',
-        icon: './images/appIcons/info.png',
-        iframeSrc: './apps/about.html',
-        windowSize: {width: 250, height: 210},
-        minSize: {width: 250, height: 210}
-    },
-    notepad: {
-        title: 'Notepad',
-        icon: './images/appIcons/notepad.png',
-        iframeSrc: './apps/notepad.html',
-        windowSize: {width: 500, height: 350},
-        minSize: {width: 200, height: 150}
-    },
-    error: {
-        title: 'Error :(',
-        icon: './images/appIcons/error.png',
-        iframeSrc: './apps/error.html',
-        windowSize: {width: 400, height: 150},
-        minSize: {width: 400, height: 150}
-    },
-    appNotFoundError: {
-        title: 'Error',
-        icon: './images/appIcons/error.png',
-        iframeSrc: './apps/appNotFoundError.html',
-        windowSize: {width: 400, height: 150},
-        minSize: {width: 400, height: 150}
-    },
-    apiError: {
-        title: 'Error',
-        icon: './images/appIcons/error.png',
-        iframeSrc: './apps/apiError.html',
-        windowSize: {width: 400, height: 150},
-        minSize: {width: 400, height: 150}
-    },
-    devPanel: {
-        title: 'Developer stuff',
-        icon: './images/appIcons/code.png',
-        iframeSrc: './apps/devPanel.html',
-        windowSize: {width: 700, height: 450},
-        minSize: {width: 700, height: 200}
-    },
-    calculator: {
-        title: 'Calculator',
-        icon: './images/appIcons/calculator.png',
-        iframeSrc: './apps/calculator.html',
-        windowSize: {width: 300, height: 400},
-        minSize: {width: 200, height: 350}
-    }
-};
-
 let highestZIndex = 5;
+let lastWindowX = 30;
+let lastWindowY = 30;
+const spawnOffset = 20;
+const maxOffset = 160;
 
 const overlay = document.getElementById('dragOverlay');
 
@@ -76,8 +21,8 @@ function createAppWindow(appKey) {
     windowDiv.classList.add('window', 'movable');
     windowDiv.style.width = `${width}px`;
     windowDiv.style.height = `${height}px`;
-    windowDiv.style.left = '10px';
-    windowDiv.style.top = '10px';
+    windowDiv.style.left = `${lastWindowX}px`;
+    windowDiv.style.top = `${lastWindowY}px`;
 
     windowDiv.innerHTML = `
         <div class="titleBar">
@@ -85,24 +30,27 @@ function createAppWindow(appKey) {
                 <img src="${config.icon}" alt="Icon" class="icon">
             </div>
             <div class="appName">${config.title}</div>
-            <div class="controls">X</div>
+            <div class="controls">
+                <img src="./images/close.png" alt="Icon" class="icon">
+            </div>
         </div>
         <div class="windowContent">
+            <div class="iframeOverlay"></div>
             <iframe src="${config.iframeSrc}" frameborder="0"></iframe>
         </div>
     `;
 
     document.body.appendChild(windowDiv);
-
+    
     const closeBtn = windowDiv.querySelector('.controls');
     closeBtn.addEventListener('click', () => {
         windowDiv.remove();
     });
 
     windowDiv.style.position = 'absolute';
-    windowDiv.dataset.x = 100;
-    windowDiv.dataset.y = 100;
-    windowDiv.style.transform = `translate(100px, 100px)`;
+    windowDiv.dataset.x = lastWindowX;
+    windowDiv.dataset.y = lastWindowY;
+    windowDiv.style.transform = `translate(${lastWindowX}px, ${lastWindowY}px)`;
 
     highestZIndex++;
     windowDiv.style.zIndex = highestZIndex;
@@ -110,9 +58,11 @@ function createAppWindow(appKey) {
     windowDiv.addEventListener('mousedown', () => {
         highestZIndex++;
         windowDiv.style.zIndex = highestZIndex;
+        setActiveWindow(windowDiv);
     });
 
     interact(windowDiv).draggable({
+        allowFrom: '.titleBar',
         listeners: {
             start(event) {
                 overlay.style.display = 'block';
@@ -159,6 +109,27 @@ function createAppWindow(appKey) {
             end(event) {
                 overlay.style.display = 'none';
             }
+        }
+    });
+    
+    lastWindowX += spawnOffset;
+    lastWindowY += spawnOffset;
+    if (lastWindowX > maxOffset) lastWindowX = 30;
+    if (lastWindowY > maxOffset) lastWindowY = 30;
+
+    setActiveWindow(windowDiv);
+}
+
+function setActiveWindow(activeWindow) {
+    const allWindows = document.querySelectorAll('.window');
+    allWindows.forEach(win => {
+        const overlay = win.querySelector('.iframeOverlay');
+        if (win === activeWindow) {
+            win.classList.remove('inactive');
+            overlay.style.display = 'none';
+        } else {
+            win.classList.add('inactive');
+            overlay.style.display = 'block';
         }
     });
 }

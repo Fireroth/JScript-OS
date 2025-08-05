@@ -116,16 +116,12 @@ body {
 
 .window {
     position: absolute;
-    width: 300px;
-    height: 500px;
     background-color: #f0f8ff;
     display: flex;
     flex-direction: column;
     border: 3px solid #000;
     border-radius: 2px;
     box-sizing: border-box;
-    min-height: 80px;
-    min-width: 100px;
 }
 
 .window .titleBar {
@@ -136,6 +132,7 @@ body {
     justify-content: space-between;
     padding: 0 5px;
     flex-shrink: 0;
+    cursor: move;
 }
 
 .window .windowContent {
@@ -162,6 +159,14 @@ body {
     height: 25px;
 }
 
+.window.inactive {
+    opacity: 0.8;
+}
+
+.window.inactive .titleBar {
+    background-color: #6060c5;
+}
+
 #dragOverlay {
     position: fixed;
     top: 0;
@@ -170,6 +175,16 @@ body {
     height: 100vh;
     z-index: 99999;
     display: none;
+    background-color: transparent;
     cursor: move;
 }
 
+.iframeOverlay {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 32px);
+    z-index: 1;
+    background: transparent;
+    pointer-events: auto;
+    display: none;
+}
