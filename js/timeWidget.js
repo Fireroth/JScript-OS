@@ -1,7 +1,12 @@
 function updateTime() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString();
-    document.getElementById("timeNow").textContent = timeString;
+    if (window.osState.use24HourClock) {
+        const timeString = now.toLocaleTimeString([], { hour12: false });
+        document.getElementById("timeNow").textContent = timeString;
+    } else {
+        const timeString = now.toLocaleTimeString();
+        document.getElementById("timeNow").textContent = timeString;
+    } 
 }
 
 updateTime();

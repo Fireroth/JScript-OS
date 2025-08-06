@@ -50,6 +50,11 @@ body {
 
 .desktop .apps {
     position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 60px);
 }
 
 .desktop .apps .app {

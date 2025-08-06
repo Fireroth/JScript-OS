@@ -3,15 +3,15 @@ const appConfigs = {
         title: 'Rotating cube',
         icon: './images/appIcons/cube.png',
         iframeSrc: 'https://fireroth.is-a.dev/sottau/webGLCube/',
-        windowSize: {width: 900, height: 600},
+        windowSize: {width: 900, height: 650},
         minSize: {width: 300, height: 200}
     },
     about: {
-        title: 'About JScript OS',
+        title: 'JScript OS',
         icon: './images/appIcons/info.png',
         iframeSrc: './apps/about.html',
-        windowSize: {width: 250, height: 210},
-        minSize: {width: 250, height: 210}
+        windowSize: {width: 350, height: 260},
+        minSize: {width: 350, height: 260}
     },
     notepad: {
         title: 'Notepad',
@@ -53,6 +53,13 @@ const appConfigs = {
         icon: './images/appIcons/console.png',
         iframeSrc: './apps/console.html',
         windowSize: {width: 500, height: 300},
+        minSize: {width: 300, height: 150}
+    },
+    settings: {
+        title: 'Settings',
+        icon: './images/appIcons/settings.png',
+        iframeSrc: './apps/settings.html',
+        windowSize: {width: 650, height: 400},
         minSize: {width: 300, height: 150}
     },
     calculator: {

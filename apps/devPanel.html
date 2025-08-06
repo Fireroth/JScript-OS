@@ -76,11 +76,19 @@
         <div class="title">Invoke appNotFound error</div>
         <div class="message">window.parent.postMessage({ action: 'createWindow',  appName: 'null' }, '*');</div>
         <button class="button" onclick="badApp()">Invoke</button>
+        <hr>
+        <div class="title">Test changeOsState</div>
+        <div class="message">window.parent.postMessage({ action: 'changeOsState',  varName: 'theme', value: 'light' }, '*');</div>
+        <button class="button" onclick="changeVar()">Test</button>
     </div>
 
     <script>
     function closeWindow() {
         window.parent.postMessage({ action: 'closeWindow' }, '*');
+    }
+
+    function changeVar() {
+        window.parent.postMessage({ action: 'changeOsState',  varName: 'theme', value: 'light' }, '*');
     }
 
     function badCommand() {
