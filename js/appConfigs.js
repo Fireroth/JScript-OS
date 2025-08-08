@@ -66,7 +66,7 @@ const appConfigs = {
         title: 'Calculator',
         icon: './images/appIcons/calculator.png',
         iframeSrc: './apps/calculator.html',
-        windowSize: {width: 300, height: 400},
+        windowSize: {width: 300, height: 410},
         minSize: {width: 200, height: 350}
     }
 };

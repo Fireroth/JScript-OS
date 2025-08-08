@@ -1,3 +1,43 @@
+.dark {
+    --text: #f9f9f9;
+    --taskbar-bg: #4f4f4f;
+    --taskbar-section-bg: #2f2f2f;
+    --taskbar-text: white;
+
+    --app-hover-bg: rgba(255, 255, 255, 0.2);
+
+    --startmenu-bg: rgba(51, 51, 51, 0.7);
+    --startmenu-hover-bg: #444;
+    --startmenu-text: white;
+
+    --window-bg: #f0f8ff;
+    --window-border: #000;
+    --window-title-bg: #7c7cff;
+    --window-inactive-title-bg: #6060c5;
+    --window-content-bg: #282828;
+}
+
+.light {
+    --text: #000;
+    --taskbar-bg: #e0e0e0;
+    --taskbar-section-bg: #c8c8c8;
+    --taskbar-text: #000;
+
+    --app-hover-bg: rgba(0, 0, 0, 0.1);
+
+    --startmenu-bg: rgba(255, 255, 255, 0.7);
+    --startmenu-hover-bg: #ddd;
+    --startmenu-text: #000;
+
+    --window-bg: #ffffff;
+    --window-border: #000;
+    --window-title-bg: #c0d8ff;
+    --window-inactive-title-bg: #a0b8e0;
+    --window-content-bg: #f5f5f5;
+}
+
+/*--------------------------------------*/
+
 body {
     margin: 0;
     padding: 0;
@@ -17,7 +57,7 @@ body {
 }
 
 .taskbar {
-    background-color: rgb(79, 79, 79);
+    background-color: var(--taskbar-bg);
     height: 40px;
     width: 100%;
     display: flex;
@@ -28,8 +68,8 @@ body {
 .taskbar .start {
     width: 100px;
     height: 100%;
-    background-color: #2f2f2f;
-    color: white;
+    background-color: var(--taskbar-section-bg);
+    color: var(--taskbar-text);
     cursor: pointer;
     font-size: 20px;
     display: flex;
@@ -40,8 +80,8 @@ body {
 .taskbar .time {
     width: 150px;
     height: 100%;
-    background-color: #2f2f2f;
-    color: white;
+    background-color: var(--taskbar-section-bg);
+    color: var(--taskbar-text);
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -67,23 +107,18 @@ body {
 }
 
 .desktop .apps .app:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--app-hover-bg);
 }
 
 .desktop .apps .app img{
     width: 48px;
     height: 48px;
-    color: #000;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     border-radius: 3px;
-
 }
 
 .desktop .apps .app .appName {
     font-size: 16px;
-    color: #f9f9f9;
+    color: var(--text);
 }
 
 .startMenu {
@@ -92,8 +127,8 @@ body {
     left: 0;
     width: 200px;
     height: 300px;
-    background-color: rgba(51, 51, 51, 0.7);
-    color: white;
+    background-color: var(--startmenu-bg);
+    color: var(--startmenu-text);
     padding: 10px;
     display: none;
     backdrop-filter: blur(10px);
@@ -112,7 +147,7 @@ body {
 }
 
 .startMenu .menuItem:hover {
-    background-color: #444;
+    background-color: var(--startmenu-hover-bg);
 }
 
 .startMenu.visible {
@@ -121,17 +156,17 @@ body {
 
 .window {
     position: absolute;
-    background-color: #f0f8ff;
+    background-color: var(--window-bg);
     display: flex;
     flex-direction: column;
-    border: 3px solid #000;
+    border: 3px solid var(--window-border);
     border-radius: 2px;
     box-sizing: border-box;
 }
 
 .window .titleBar {
     height: 30px;
-    background-color: #7c7cff;
+    background-color: var(--window-title-bg);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -142,8 +177,8 @@ body {
 
 .window .windowContent {
     flex: 1;
-    border-top: 3px solid #000;
-    background-color: #282828;
+    border-top: 3px solid var(--window-border);
+    background-color: var(--window-content-bg);
     min-height: 0px;
     min-width: 0px;
 }
@@ -169,7 +204,7 @@ body {
 }
 
 .window.inactive .titleBar {
-    background-color: #6060c5;
+    background-color: var(--window-inactive-title-bg);
 }
 
 #dragOverlay {
