@@ -1,5 +1,11 @@
+<!--
+apps/error.html?title=API%20Error&message=Invalid%20API%20command
+apps/error.html?title=App%20Error&message=Application%20not%20found
+-->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +45,7 @@
             font-size: 16px;
             margin-bottom: 15px;
             color: #333;
+            max-width: 80%;
         }
 
         .errorButton {
@@ -56,17 +63,32 @@
         }
     </style>
 </head>
+
 <body>
     <div class="errorBox">
-        <div class="errorTitle">Error</div>
-        <div class="errorMessage">Something went wrong.</div>
+        <div class="errorTitle" id="errorTitle">Error</div>
+        <div class="errorMessage" id="errorMessage">An unknown error occurred.</div>
         <button class="errorButton" onclick="closeWindow()">OK</button>
     </div>
 
     <script>
-    function closeWindow() {
-        window.parent.postMessage({ action: 'closeWindow' }, '*');
-    }
+        function getQueryParams() {
+            const params = {};
+            location.search.substring(1).split("&").forEach(part => {
+                if (!part) return;
+                const [key, value] = part.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+            });
+            return params;
+        }
+
+        function closeWindow() {
+            window.parent.postMessage({ action: 'closeWindow' }, '*');
+        }
+
+        const params = getQueryParams();
+        if (params.title) document.getElementById("errorTitle").textContent = params.title;
+        if (params.message) document.getElementById("errorMessage").textContent = params.message;
     </script>
 </body>
 </html>

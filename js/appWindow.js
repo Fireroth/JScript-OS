@@ -6,16 +6,24 @@ const maxOffset = 160;
 
 const overlay = document.getElementById('dragOverlay');
 
-function createAppWindow(appKey) {
+function createAppWindow(appKey, params = {}) {
     let config = appConfigs[appKey];
     if (!config) {
-        config = appConfigs['appNotFoundError']
+        return createAppWindow('error', {title: 'App Not Found', message: `The application "${appKey}" could not be found.`});
     };
 
     const windowSize = config.windowSize || { width: 400, height: 300 };
     const minSize = config.minSize || { width: 150, height: 100 };
 
     const { width, height } = windowSize;
+
+    let iframeSrc = config.iframeSrc;
+    if (params && Object.keys(params).length > 0) {
+        const queryString = Object.entries(params)
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            .join("&");
+        iframeSrc += (iframeSrc.includes('?') ? '&' : '?') + queryString;
+    }
 
     const windowDiv = document.createElement('div');
     windowDiv.classList.add('window', 'movable');
@@ -35,8 +43,8 @@ function createAppWindow(appKey) {
             </div>
         </div>
         <div class="windowContent">
-            <div class="iframeOverlay"></div>
-            <iframe src="${config.iframeSrc}" frameborder="0"></iframe>
+            <div class="focusOverlay"></div>
+            <iframe src="${iframeSrc}" frameborder="0"></iframe>
         </div>
     `;
 
@@ -123,7 +131,7 @@ function createAppWindow(appKey) {
 function setActiveWindow(activeWindow) {
     const allWindows = document.querySelectorAll('.window');
     allWindows.forEach(win => {
-        const overlay = win.querySelector('.iframeOverlay');
+        const overlay = win.querySelector('.focusOverlay');
         if (win === activeWindow) {
             win.classList.remove('inactive');
             overlay.style.display = 'none';

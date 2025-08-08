@@ -1,6 +1,7 @@
 const defaultOsState = {
     theme: 'Dark',
     use24HourClock: true,
+    wallpaper: 'wallpaper1.jpg',
 };
 
 function saveState(state) {
@@ -17,6 +18,8 @@ function applyState() {
     const body = document.body;
     body.classList.remove('dark', 'light');
     body.classList.add(window.osState.theme.toLowerCase());
+
+    document.querySelector('.desktop').style.backgroundImage = `url(../images/${window.osState.wallpaper})`;
 
     console.log('Applied changes from osState');
 

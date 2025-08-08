@@ -48,7 +48,8 @@ body {
 }
 
 .desktop {
-    background-image: url(../images/wallpaper.jpg);
+    background-color: #282828;
+    background-image: url(../images/wallpaper1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -219,7 +220,7 @@ body {
     cursor: move;
 }
 
-.iframeOverlay {
+.focusOverlay {
     position: absolute;
     width: 100%;
     height: calc(100% - 32px);

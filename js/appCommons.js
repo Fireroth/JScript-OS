@@ -1,12 +1,24 @@
+let inIframe = false;
+
 function applyTheme(theme) {
     document.body.classList.remove('dark', 'light');
     document.body.classList.add(theme.toLowerCase());
 }
 
-applyTheme(parent.osState.theme);
+try {
+    inIframe = window.self !== window.top;
+} catch (e) {
+    inIframe = true;
+}
 
-window.addEventListener('message', (event) => {
-    if (event.data.theme) {
-        applyTheme(event.data.theme);
-    }
-});
+if (!inIframe) {
+    document.body.classList.add('dark');
+} else {
+    applyTheme(parent.osState.theme);
+
+    window.addEventListener('message', (event) => {
+        if (event.data.theme) {
+            applyTheme(event.data.theme);
+        }
+    });
+}

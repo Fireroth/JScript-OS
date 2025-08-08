@@ -53,6 +53,7 @@
 
     .sidebar {
       width: 250px;
+      min-width: 250px;
       background-color: var(--sidebar-bg);
       padding: 20px;
       border-right: 1px solid var(--sidebar-border);
@@ -133,6 +134,45 @@
       padding: 5px;
       width: 80px;
     }
+
+    .wallpaperGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .wallpaperGrid img,
+    .wallpaperGrid .customWallpaper {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .wallpaperGrid img:hover,
+    .wallpaperGrid .customWallpaper:hover {
+      border-color: #007acc;
+    }
+
+    .wallpaperGrid img.selected {
+      border-color: #007acc;
+    }
+
+    .customWallpaper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--sidebar-bg);
+      color: var(--text);
+      font-size: 12px;
+      border-radius: 4px;
+      border: 2px dashed var(--sidebar-border);
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -143,7 +183,6 @@
     <h2>Settings</h2>
     <div class="nav-item active" data-panel="general">General</div>
     <div class="nav-item" data-panel="appearance">Appearance</div>
-    <!--<div class="nav-item" data-panel="desktop">Desktop</div>-->
     <div class="nav-item" data-panel="defaults">Load Defaults</div>
   </div>
 
@@ -164,25 +203,29 @@
           <option id="themeLight">Light</option>
         </select>
       </div>
-      <!--<div class="setting-group">
-        <label>Font Size</label>
-        <input type="range" min="12" max="24" value="16" />
-      </div>-->
-    </div>
 
-    <!--<div class="panel" id="panel-desktop">
-      <h1>Desktop</h1>
       <div class="setting-group">
         <label>Wallpaper</label>
-        <input type="file" style="width: 100%;" />
+        <div class="wallpaperGrid" id="wallpaperGrid">
+          <img src="../images/wallpaperPreview/wallpaper1.jpg" data-wallpaper="wallpaper1.jpg" alt="Wallpaper 1">
+          <img src="../images/wallpaperPreview/wallpaper2.jpg" data-wallpaper="wallpaper2.jpg" alt="Wallpaper 2">
+          <img src="../images/wallpaperPreview/wallpaper3.jpg" data-wallpaper="wallpaper3.jpg" alt="Wallpaper 3">
+          <img src="../images/wallpaperPreview/wallpaper4.jpg" data-wallpaper="wallpaper4.jpg" alt="Wallpaper 4">
+          <img src="../images/wallpaperPreview/wallpaper5.jpg" data-wallpaper="wallpaper5.jpg" alt="Wallpaper 5">
+          <!--<label class="customWallpaper">
+            <input type="file" id="customWallpaper" accept="image/*" style="display:none;">
+            <span>Browse...</span>
+          </label>-->
+        </div>
       </div>
-    </div>-->
+    </div>
 
     <div class="panel" id="panel-defaults">
       <h1>Load OS Defaults</h1>
       <div class="setting-group">
         <label id="restoreDefaultsText">Start fresh?</label>
-        <button id="restoreDefaultsBtn" onclick="confirmRestoreDefaults()" class="button">Load Default Configuration</button>
+        <button id="restoreDefaultsBtn" onclick="confirmRestoreDefaults()" class="button">Load Default
+          Configuration</button>
       </div>
     </div>
 
@@ -220,6 +263,7 @@
       function restoreDefaults() {
         window.parent.postMessage({ action: 'changeOsState', varName: 'use24HourClock', value: true }, '*');
         window.parent.postMessage({ action: 'changeOsState', varName: 'theme', value: 'Dark' }, '*');
+        window.parent.postMessage({ action: 'changeOsState', varName: 'wallpaper', value: 'wallpaper1.jpg' }, '*');
         setTimeout(() => parent.location.reload(), 600);
       }
       //-----------------------------------------------------------------
@@ -243,10 +287,16 @@
         const is24Hour = checkbox24Hour.checked;
         window.parent.postMessage({ action: 'changeOsState', varName: 'use24HourClock', value: is24Hour }, '*');
       });
-      
+
       const selectedTheme = document.getElementById("themeSelect");
       selectedTheme.addEventListener("change", function () {
         window.parent.postMessage({ action: 'changeOsState', varName: 'theme', value: selectedTheme.value }, '*');
+      });
+
+      document.querySelectorAll("img[data-wallpaper]").forEach(img => {
+        img.addEventListener("click", () => {
+          window.parent.postMessage({ action: 'changeOsState', varName: 'wallpaper', value: img.dataset.wallpaper }, '*');
+        });
       });
       //-----------------------------------------------------------------
     </script>

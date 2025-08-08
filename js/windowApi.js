@@ -19,6 +19,6 @@ window.addEventListener('message', (event) => {
             console.warn(`Variable '${event.data.varName}' not found in osState`);
         }
     } else {
-        createAppWindow('apiError');
+        createAppWindow('error', {title: 'API Error', message: 'Invalid API command'});
     }
 });

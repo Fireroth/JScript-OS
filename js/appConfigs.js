@@ -21,24 +21,10 @@ const appConfigs = {
         minSize: {width: 200, height: 150}
     },
     error: {
-        title: 'Error :(',
+        title: 'Error',
         icon: './images/appIcons/error.png',
         iframeSrc: './apps/error.html',
-        windowSize: {width: 400, height: 150},
-        minSize: {width: 400, height: 150}
-    },
-    appNotFoundError: {
-        title: 'Error',
-        icon: './images/appIcons/error.png',
-        iframeSrc: './apps/appNotFoundError.html',
-        windowSize: {width: 400, height: 150},
-        minSize: {width: 400, height: 150}
-    },
-    apiError: {
-        title: 'Error',
-        icon: './images/appIcons/error.png',
-        iframeSrc: './apps/apiError.html',
-        windowSize: {width: 400, height: 150},
+        windowSize: {width: 470, height: 180},
         minSize: {width: 400, height: 150}
     },
     devPanel: {
@@ -59,8 +45,8 @@ const appConfigs = {
         title: 'Settings',
         icon: './images/appIcons/settings.png',
         iframeSrc: './apps/settings.html',
-        windowSize: {width: 650, height: 400},
-        minSize: {width: 300, height: 150}
+        windowSize: {width: 650, height: 420},
+        minSize: {width: 500, height: 250}
     },
     calculator: {
         title: 'Calculator',
