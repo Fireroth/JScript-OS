@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Run</title>
+</head>
+
+<body>
+    <script src="../../js/appCommons.js"></script>
+
+    <div class="runDialog">
+        <h2>Run</h2>
+        <p>Type the name of the application.</p>
+        <label for="command">Open:</label>
+        <input type="text" id="command" onkeydown="if(event.key === 'Enter') openApp();">
+        <div class="buttons">
+            <button id="ok" onclick="openApp()">OK</button>
+            <button id="cancel" onclick="window.parent.postMessage({ action: 'closeWindow' }, '*');">Cancel</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

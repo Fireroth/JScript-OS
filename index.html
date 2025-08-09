@@ -11,7 +11,8 @@
     <script defer src="./js/timeWidget.js"></script>
     <script defer src="./js/startWidget.js"></script>
     <script defer src="./js/appWindow.js"></script>
-    <script defer src="./js/windowApi.js"></script>
+    <script defer src="./js/osApi.js"></script>
+    <script defer src="./js/desktop.js"></script>
     <!--<script defer src="./js/appCommons.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -22,28 +23,7 @@
     <div id="dragOverlay"></div>
 
     <div class="desktop">
-        <div class="apps">
-            <div class="app" data-app="notepad">
-                <img src="./images/appIcons/notepad.png" alt="Icon">
-                <div class="appName">Notepad</div>
-            </div>
-            <div class="app" data-app="calculator">
-                <img src="./images/appIcons/calculator.png" alt="Icon">
-                <div class="appName">Calculator</div>
-            </div>
-            <div class="app" data-app="console">
-                <img src="./images/appIcons/console.png" alt="Icon">
-                <div class="appName">Console</div>
-            </div>
-            <div class="app" data-app="settings">
-                <img src="./images/appIcons/settings.png" alt="Icon">
-                <div class="appName">Settings</div>
-            </div>
-            <div class="app" data-app="cube">
-                <img src="./images/appIcons/cube.png" alt="Icon">
-                <div class="appName">Rotating cube</div>
-            </div>
-        </div>
+        <div class="apps" id="appsContainer"></div>
     </div>
 
     <div class="taskbar">
@@ -51,35 +31,6 @@
         <div id="timeNow" class="time">HH:MM:SS</div>
     </div>
 
-    <div id="startMenu" class="startMenu hidden">
-        <div class="menuItem" data-app="notepad">
-            <img src="./images/appIcons/notepad.png" alt="Icon">
-            <div class="appName">Notepad</div>
-        </div>
-        <div class="menuItem" data-app="calculator">
-            <img src="./images/appIcons/calculator.png" alt="Icon">
-            <div class="appName">Calculator</div>
-        </div>
-        <div class="menuItem" data-app="cube">
-            <img src="./images/appIcons/cube.png" alt="Icon">
-            <div class="appName">Rotating cube</div>
-        </div>
-        <div class="menuItem" data-app="console">
-            <img src="./images/appIcons/console.png" alt="Icon">
-            <div class="appName">Console</div>
-        </div>
-        <div class="menuItem" data-app="settings">
-            <img src="./images/appIcons/settings.png" alt="Icon">
-            <div class="appName">Settings</div>
-        </div>
-        <div class="menuItem" data-app="devPanel">
-            <img src="./images/appIcons/code.png" alt="Icon">
-            <div class="appName">Dev Panel</div>
-        </div>
-        <div class="menuItem" data-app="about">
-            <img src="./images/appIcons/info.png" alt="Icon">
-            <div class="appName">About</div>
-        </div>
-    </div>
+    <div id="startMenu" class="startMenu hidden"></div>
 </body>
 </html>

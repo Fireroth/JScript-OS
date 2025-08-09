@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css">
+  <title>Settings</title>
+</head>
+
+<body>
+  <script src="../../js/appCommons.js"></script>
+
+  <div class="sidebar">
+    <h2>Settings</h2>
+    <div class="nav-item active" data-panel="general">General</div>
+    <div class="nav-item" data-panel="appearance">Appearance</div>
+    <div class="nav-item" data-panel="defaults">Load Defaults</div>
+  </div>
+
+  <div class="main-content">
+    <div class="panel active" id="panel-general">
+      <h1>General Settings</h1>
+      <div class="setting-group">
+        <label><input type="checkbox" id="use24HourClock" /> 24 hour time format</label>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-appearance">
+      <h1>Appearance</h1>
+      <div class="setting-group">
+        <label>Theme</label>
+        <select id="themeSelect">
+          <option id="themeDark" selected>Dark</option>
+          <option id="themeLight">Light</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label>Wallpaper</label>
+        <div class="wallpaperGrid" id="wallpaperGrid">
+          <img src="../../images/wallpaperPreview/wallpaper1.jpg" data-wallpaper="wallpaper1.jpg" alt="Wallpaper 1">
+          <img src="../../images/wallpaperPreview/wallpaper2.jpg" data-wallpaper="wallpaper2.jpg" alt="Wallpaper 2">
+          <img src="../../images/wallpaperPreview/wallpaper3.jpg" data-wallpaper="wallpaper3.jpg" alt="Wallpaper 3">
+          <img src="../../images/wallpaperPreview/wallpaper4.jpg" data-wallpaper="wallpaper4.jpg" alt="Wallpaper 4">
+          <img src="../../images/wallpaperPreview/wallpaper5.jpg" data-wallpaper="wallpaper5.jpg" alt="Wallpaper 5">
+          <!--<label class="customWallpaper">
+            <input type="file" id="customWallpaper" accept="image/*" style="display:none;">
+            <span>Browse...</span>
+          </label>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-defaults">
+      <h1>Load OS Defaults</h1>
+      <div class="setting-group">
+        <label id="restoreDefaultsText">Start fresh?</label>
+        <button id="restoreDefaultsBtn" onclick="confirmRestoreDefaults()" class="button">Load Default
+          Configuration</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./check.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>

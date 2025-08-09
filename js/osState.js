@@ -19,7 +19,7 @@ function applyState() {
     body.classList.remove('dark', 'light');
     body.classList.add(window.osState.theme.toLowerCase());
 
-    document.querySelector('.desktop').style.backgroundImage = `url(../images/${window.osState.wallpaper})`;
+    document.querySelector('.desktop').style.backgroundImage = `url(./images/${window.osState.wallpaper})`;
 
     console.log('Applied changes from osState');
 

@@ -1,0 +1,167 @@
+.dark {
+    --bg: #1e1e1e;
+    --text: #ffffff;
+
+    --sidebar-bg: #2c2c2c;
+    --sidebar-border: #444;
+    --accent: #4dcfb5;
+
+    --nav-hover-bg: #3a3a3a;
+    --nav-active-bg: #3a3a3a;
+}
+
+.light {
+    --bg: #f5f5f5;
+    --text: #000000;
+
+    --sidebar-bg: #ffffff;
+    --sidebar-border: #ccc;
+    --accent: #007acc;
+
+    --nav-hover-bg: #e0e0e0;
+    --nav-active-bg: #d0d0d0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    background-color: var(--bg);
+    color: var(--text);
+    user-select: none;
+}
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid var(--sidebar-border);
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.nav-item {
+    margin-bottom: 15px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: var(--nav-hover-bg);
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.setting-group {
+    margin-bottom: 30px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.setting-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.setting-group input[type="range"] {
+    width: 100%;
+}
+
+.button {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #005f99;
+}
+
+.setting-group select {
+    padding: 5px;
+    width: 80px;
+}
+
+.wallpaperGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.wallpaperGrid img,
+.wallpaperGrid .customWallpaper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.wallpaperGrid img:hover,
+.wallpaperGrid .customWallpaper:hover {
+    border-color: #007acc;
+}
+
+.wallpaperGrid img.selected {
+    border-color: #007acc;
+}
+
+.customWallpaper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sidebar-bg);
+    color: var(--text);
+    font-size: 12px;
+    border-radius: 4px;
+    border: 2px dashed var(--sidebar-border);
+    cursor: pointer;
+}

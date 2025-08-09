@@ -141,17 +141,3 @@ function setActiveWindow(activeWindow) {
         }
     });
 }
-
-document.querySelectorAll('.app').forEach(app => {
-    app.addEventListener('click', () => {
-        const appKey = app.getAttribute('data-app');
-        createAppWindow(appKey);
-    });
-});
-
-document.querySelectorAll('.menuItem').forEach(app => {
-    app.addEventListener('click', () => {
-        const appKey = app.getAttribute('data-app');
-        createAppWindow(appKey);
-    });
-});

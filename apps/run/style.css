@@ -1,0 +1,77 @@
+.light {
+    --bg: #ffffff;
+    --text: #000000;
+    --sidebar-bg: #ffffff;
+    --border: #ccc;
+    --accent: #007acc;
+}
+
+.dark {
+    --bg: #2c2c2c;
+    --text: #ffffff;
+    --sidebar-bg: #2c2c2c;
+    --border: #444;
+    --accent: #4dcfb5;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--bg);
+    color: var(--text);
+    position: relative;
+    font-family: 'Consolas', 'Courier New', monospace;
+
+}
+
+.runDialog {
+    background-color: var(--bg);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100vw;
+    transform: translateY(-50%);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin: 0;
+    color: var(--accent);
+}
+
+p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 2px solid var(--border);
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #005f99;
+}

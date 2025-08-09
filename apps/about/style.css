@@ -1,0 +1,69 @@
+.dark {
+    --title-text: #4dcfb5;
+    --bg: #3a3a3a;
+    --msg-text: #fff;
+}
+
+.light {
+    --title-text: #007acc;
+    --bg: #f2f2f2;
+    --msg-text: #000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Consolas', 'Courier New', monospace;
+    overflow: hidden;
+}
+
+.container {
+    background-color: var(--bg);
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--title-text);
+    margin-bottom: 10px;
+}
+
+.msg {
+    font-size: 16px;
+    margin-bottom: 1px;
+    color: var(--msg-text);
+}
+
+.msg a {
+    color: var(--msg-text);
+}
+
+.closeButton {
+    margin-top: 10px;
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background: #005f99;
+}
+
+.msgContainer {
+    text-align: left;
+}

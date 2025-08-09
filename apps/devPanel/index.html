@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>DevPanel</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Close window</div>
+        <div class="message">window.parent.postMessage({ action: 'closeWindow' }, '*');</div>
+        <button class="button" onclick="closeWindow()">Close</button>
+        <hr>
+        <div class="title">Invoke API error</div>
+        <div class="message">window.parent.postMessage({ action: 'null' }, '*');</div>
+        <button class="button" onclick="badCommand()">Invoke</button>
+        <hr>
+        <div class="title">Invoke appNotFound error</div>
+        <div class="message">window.parent.postMessage({ action: 'createWindow',  appName: 'null' }, '*');</div>
+        <button class="button" onclick="badApp()">Invoke</button>
+        <hr>
+        <div class="title">Test changeOsState</div>
+        <div class="message">window.parent.postMessage({ action: 'changeOsState',  varName: 'theme', value: 'light' }, '*');</div>
+        <button class="button" onclick="changeVar()">Test</button>
+        <hr>
+        <div class="title">Add "Run" to desktop</div>
+        <div class="message">window.parent.postMessage({ action: 'addDesktopApp',  appNameID: 'run', appName: 'Run', icon: './images/appIcons/program.png' }, '*');</div>
+        <button class="button" onclick="addApp()">Add</button>
+        <hr>
+        <div class="title">Remove "Run" from desktop</div>
+        <div class="message">window.parent.postMessage({ action: 'removeDesktopApp',  appNameID: 'run' }, '*');</div>
+        <button class="button" onclick="delApp()">Remove</button>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
