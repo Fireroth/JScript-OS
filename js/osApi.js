@@ -15,6 +15,8 @@ window.addEventListener('message', (event) => {
         window.desktopApps[event.data.appNameID] = { title: event.data.appName, icon: event.data.icon };
     } else if (event.data && event.data.action === 'removeDesktopApp' && typeof event.data.appNameID === 'string') {
         delete window.desktopApps[event.data.appNameID];
+    } else if (event.data && event.data.action === 'createError' && typeof event.data.title === 'string' && typeof event.data.message === 'string') {
+        createAppWindow('error', {title: event.data.title, message: event.data.message});
     } else if (event.data && event.data.action === 'changeOsState' && typeof event.data.varName === 'string') {
         if (window.osState.hasOwnProperty(event.data.varName)) {
             window.osState[event.data.varName] = event.data.value;

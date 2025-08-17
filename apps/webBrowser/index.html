@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Web Browser</title>
+</head>
+<body>
+    <script src="../../js/appCommons.js"></script>
+    
+    <div class="browser-window">
+        <div class="url-bar">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://example.com)" onkeydown="if(event.key === 'Enter') loadUrl();">
+            <button onclick="loadUrl()">Go</button>
+        </div>
+        <iframe class="browser-content" id="browserFrame" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

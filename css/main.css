@@ -126,13 +126,14 @@ body {
     position: absolute;
     bottom: 40px;
     left: 0;
-    width: 200px;
-    height: 300px;
+    width: 230px;
+    height: 350px;
     background-color: var(--startmenu-bg);
     color: var(--startmenu-text);
     padding: 10px;
     display: none;
     backdrop-filter: blur(10px);
+    z-index: 999998;
 }
 
 .startMenu .menuItem {
@@ -190,6 +191,11 @@ body {
     border: none;
 }
 
+.window .controls {
+    display: flex;
+    gap: 5px;
+}
+
 .window .controls:hover {
     cursor: pointer;
 }
@@ -204,6 +210,11 @@ body {
     opacity: 0.8;
 }
 
+.window.maximized {
+    border-radius: 0;
+    border: none;
+}
+
 .window.inactive .titleBar {
     background-color: var(--window-inactive-title-bg);
 }
@@ -214,7 +225,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 99999;
+    z-index: 999999;
     display: none;
     background-color: transparent;
     cursor: move;

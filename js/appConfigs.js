@@ -10,7 +10,7 @@ const appConfigs = {
         title: 'JScript OS',
         icon: './images/appIcons/info.png',
         iframeSrc: './apps/about/',
-        windowSize: {width: 350, height: 260},
+        windowSize: {width: 350, height: 270},
         minSize: {width: 350, height: 260}
     },
     notepad: {
@@ -68,5 +68,12 @@ const appConfigs = {
         iframeSrc: './apps/calculator/',
         windowSize: {width: 300, height: 410},
         minSize: {width: 200, height: 350}
+    },
+    browser: {
+        title: 'Web Browser',
+        icon: './images/appIcons/browser.png',
+        iframeSrc: './apps/webBrowser/',
+        windowSize: {width: 650, height: 420},
+        minSize: {width: 500, height: 250}
     }
 };

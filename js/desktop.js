@@ -15,6 +15,10 @@ const defaultDesktopApps = {
         title: 'Settings',
         icon: './images/appIcons/settings.png'
     },
+    browser: {
+        title: 'Web Browser',
+        icon: './images/appIcons/browser.png'
+    },
     cube: {
         title: 'Rotating cube',
         icon: './images/appIcons/cube.png'

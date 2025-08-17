@@ -34,12 +34,16 @@ const startMenuApps = {
         title: 'Settings',
         icon: './images/appIcons/settings.png'
     },
+    browser: {
+        title: 'Web Browser',
+        icon: './images/appIcons/browser.png'
+    },
     cube: {
         title: 'Rotating cube',
         icon: './images/appIcons/cube.png'
     },
     devPanel: {
-        title: 'Dev Panel',
+        title: 'Developer Panel',
         icon: './images/appIcons/code.png'
     },
     /*allApps: {
