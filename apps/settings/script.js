@@ -29,6 +29,7 @@ function restoreDefaults() {
     window.parent.postMessage({ action: 'addDesktopApp', appNameID: 'calculator', appName: 'Calculator', icon: './images/appIcons/calculator.png' }, '*');
     window.parent.postMessage({ action: 'addDesktopApp', appNameID: 'console', appName: 'Console', icon: './images/appIcons/console.png' }, '*');
     window.parent.postMessage({ action: 'addDesktopApp', appNameID: 'settings', appName: 'Settings', icon: './images/appIcons/settings.png' }, '*');
+    window.parent.postMessage({ action: 'addDesktopApp', appNameID: 'browser', appName: 'Web Browser', icon: './images/appIcons/browser.png' }, '*');
     window.parent.postMessage({ action: 'addDesktopApp', appNameID: 'cube', appName: 'Rotating cube', icon: './images/appIcons/cube.png' }, '*');
 
     setTimeout(() => parent.location.reload(), 600);
