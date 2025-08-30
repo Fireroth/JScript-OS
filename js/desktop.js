@@ -7,10 +7,6 @@ const defaultDesktopApps = {
         title: 'Calculator',
         icon: './images/appIcons/calculator.png'
     },
-    console: {
-        title: 'Console',
-        icon: './images/appIcons/console.png'
-    },
     settings: {
         title: 'Settings',
         icon: './images/appIcons/settings.png'

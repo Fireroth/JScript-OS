@@ -14,6 +14,7 @@ function createAppWindow(appKey, params = {}) {
 
     const windowSize = config.windowSize || { width: 400, height: 300 };
     const minSize = config.minSize || { width: 150, height: 100 };
+    const resizable = config.resizable;
 
     const { width, height } = windowSize;
 
@@ -39,7 +40,7 @@ function createAppWindow(appKey, params = {}) {
             </div>
             <div class="appName">${config.title}</div>
             <div class="controls">
-                <img src="./images/maximize.png" alt="Icon" class="icon" id="maximizeBtn">
+                ${resizable ? `<img src="./images/maximize.png" alt="Icon" class="icon" id="maximizeBtn">` : ""}
                 <img src="./images/close.png" alt="Icon" class="icon" id="closeBtn">
             </div>
         </div>
@@ -56,36 +57,38 @@ function createAppWindow(appKey, params = {}) {
         windowDiv.remove();
     });
 
-    const maximizeBtn = windowDiv.querySelector('#maximizeBtn');
-    maximizeBtn.addEventListener('click', () => {
-        toggleMaximize(windowDiv);
-    });
+    if (resizable) {
+        const maximizeBtn = windowDiv.querySelector('#maximizeBtn');
+        maximizeBtn.addEventListener('click', () => {
+            toggleMaximize(windowDiv);
+        });
 
-    function toggleMaximize(win) {
-        if (win.classList.contains('maximized')) {
-            // Restore
-            win.classList.remove('maximized');
-            win.style.width = win.dataset.prevWidth;
-            win.style.height = win.dataset.prevHeight;
-            win.style.transform = `translate(${win.dataset.prevX}px, ${win.dataset.prevY}px)`;
-            win.dataset.x = win.dataset.prevX;
-            win.dataset.y = win.dataset.prevY;
-            maximizeBtn.src = "./images/maximize.png";
-        } else {
-            // Save state
-            win.dataset.prevWidth = win.style.width;
-            win.dataset.prevHeight = win.style.height;
-            win.dataset.prevX = win.dataset.x;
-            win.dataset.prevY = win.dataset.y;
+        function toggleMaximize(win) {
+            if (win.classList.contains('maximized')) {
+                // Restore
+                win.classList.remove('maximized');
+                win.style.width = win.dataset.prevWidth;
+                win.style.height = win.dataset.prevHeight;
+                win.style.transform = `translate(${win.dataset.prevX}px, ${win.dataset.prevY}px)`;
+                win.dataset.x = win.dataset.prevX;
+                win.dataset.y = win.dataset.prevY;
+                maximizeBtn.src = "./images/maximize.png";
+            } else {
+                // Save state
+                win.dataset.prevWidth = win.style.width;
+                win.dataset.prevHeight = win.style.height;
+                win.dataset.prevX = win.dataset.x;
+                win.dataset.prevY = win.dataset.y;
 
-            // Maximize
-            win.classList.add('maximized');
-            win.style.width = `${window.innerWidth}px`;
-            win.style.height = `${window.innerHeight - 40}px`;
-            win.style.transform = `translate(0px, 0px)`;
-            win.dataset.x = 0;
-            win.dataset.y = 0;
-            maximizeBtn.src = "./images/restore.png";
+                // Maximize
+                win.classList.add('maximized');
+                win.style.width = `${window.innerWidth}px`;
+                win.style.height = `${window.innerHeight - 40}px`;
+                win.style.transform = `translate(0px, 0px)`;
+                win.dataset.x = 0;
+                win.dataset.y = 0;
+                maximizeBtn.src = "./images/restore.png";
+            }
         }
     }
 
@@ -111,7 +114,7 @@ function createAppWindow(appKey, params = {}) {
                 overlay.style.display = 'block';
 
                 const target = event.target;
-                if (target.classList.contains('maximized')) {
+                if (resizable && target.classList.contains('maximized')) {
                     target.classList.remove('maximized');
                     target.style.width = target.dataset.prevWidth;
                     target.style.height = target.dataset.prevHeight;
@@ -127,7 +130,7 @@ function createAppWindow(appKey, params = {}) {
                     target.dataset.y = restoreY;
 
                     const maximizeBtn = target.querySelector('#maximizeBtn');
-                    maximizeBtn.src = "./images/maximize.png";
+                    if (maximizeBtn) maximizeBtn.src = "./images/maximize.png";
                 }
             },
             move(event) {
@@ -144,36 +147,38 @@ function createAppWindow(appKey, params = {}) {
         }
     });
 
-    interact(windowDiv).resizable({
-        edges: { top: true, left: true, bottom: true, right: true },
-        margin: 5,
-        modifiers: [
-            interact.modifiers.restrictSize({
-                min: minSize
-            })
-        ],
-        listeners: {
-            start(event) {
-                overlay.style.display = 'block';
-            },
-            move(event) {
-                let x = (parseFloat(event.target.dataset.x) || 0) + event.deltaRect.left;
-                let y = (parseFloat(event.target.dataset.y) || 0) + event.deltaRect.top;
+    if (resizable) {
+        interact(windowDiv).resizable({
+            edges: { top: true, left: true, bottom: true, right: true },
+            margin: 5,
+            modifiers: [
+                interact.modifiers.restrictSize({
+                    min: minSize
+                })
+            ],
+            listeners: {
+                start(event) {
+                    overlay.style.display = 'block';
+                },
+                move(event) {
+                    let x = (parseFloat(event.target.dataset.x) || 0) + event.deltaRect.left;
+                    let y = (parseFloat(event.target.dataset.y) || 0) + event.deltaRect.top;
 
-                Object.assign(event.target.style, {
-                    width: `${event.rect.width}px`,
-                    height: `${event.rect.height}px`,
-                    transform: `translate(${x}px, ${y}px)`
-                });
+                    Object.assign(event.target.style, {
+                        width: `${event.rect.width}px`,
+                        height: `${event.rect.height}px`,
+                        transform: `translate(${x}px, ${y}px)`
+                    });
 
-                event.target.dataset.x = x;
-                event.target.dataset.y = y;
-            },
-            end(event) {
-                overlay.style.display = 'none';
+                    event.target.dataset.x = x;
+                    event.target.dataset.y = y;
+                },
+                end(event) {
+                    overlay.style.display = 'none';
+                }
             }
-        }
-    });
+        });
+    }
     
     lastWindowX += spawnOffset;
     lastWindowY += spawnOffset;
