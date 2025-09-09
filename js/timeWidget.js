@@ -1,10 +1,10 @@
 function updateTime() {
     const now = new Date();
     if (window.osState.use24HourClock) {
-        const timeString = now.toLocaleTimeString([], { hour12: false });
+        const timeString = now.toLocaleTimeString("it-IT");
         document.getElementById("timeNow").textContent = timeString;
     } else {
-        const timeString = now.toLocaleTimeString();
+        const timeString = now.toLocaleTimeString("en-US");
         document.getElementById("timeNow").textContent = timeString;
     } 
 }
